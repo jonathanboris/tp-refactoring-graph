@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 
 public class GraphTest {
-
+	public static final double EPSILON = 1.0e-15;
 	@Test
 	public void testFindVertexById() {
 		Vertex v = TestGraphFactory.createGraph01().findVertex("a");
@@ -62,6 +62,17 @@ public class GraphTest {
 		List<Edge> result = g.getInEdges(b);
 		assertEquals(1, result.size());
 		assertEquals("ab (a->b)", result.get(0).toString());
+	}
+
+	@Test
+	public void testCreateEdge(){
+		Graph graph = new Graph();
+		Vertex a = graph.createVertex(new Coordinate(0.0, 0.0),"a");
+		Vertex b = graph.createVertex(new Coordinate(1.0, 0.0),"b");
+		Edge ab = graph.createEdge(a,b,"ab");
+		Assert.assertEquals(2,graph.getVertices().size(),EPSILON);
+		Assert.assertTrue(graph.getVertices().contains(a));
+		Assert.assertTrue(graph.getVertices().contains(b));
 	}
 
 }

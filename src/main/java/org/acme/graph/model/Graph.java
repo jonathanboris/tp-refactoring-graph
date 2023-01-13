@@ -39,9 +39,7 @@ public class Graph {
 	 * 
 	 * @return
 	 */
-	public void setVertices(List<Vertex> vertices) {
-		this.vertices = vertices;
-	}
+
 
 	/**
 	 * Recherche d'un sommet par identifiant
@@ -143,8 +141,20 @@ public class Graph {
 	 * 
 	 * @param edges
 	 */
-	public void setEdges(List<Edge> edges) {
-		this.edges = edges;
+
+	public Vertex createVertex(Coordinate coordinate,String id){
+		Vertex vertex = new Vertex();
+		vertex.setId(id);
+		vertex.setCoordinate(coordinate);
+		this.getVertices().add(vertex);
+		return vertex;
+	}
+
+	public Edge createEdge(Vertex source,Vertex target,String id){
+		Edge edge = new Edge(source, target);
+		edge.setId(id);
+		this.getEdges().add(edge);
+		return edge;
 	}
 
 }
